@@ -1,13 +1,13 @@
-## Гостевая книга Symfony 7
+## Гостевая книга на Symfony 7
 По книге **[Symfony: The Fast Track](https://symfony.com/doc/current/the-fast-track)**
 
 ### Используется
 
-- PHP 8.3 (alpine)
+- PHP 8.3
 - PostgreSQL (alpine)
 - Nginx (alpine)
 - Docker
-- XDebug
+- XDebug, APCu
 
 ### Настройка
 
