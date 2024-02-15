@@ -14,6 +14,7 @@ clear:
 
 app:
 	docker-compose exec php bash
+
 docker-up:
 	docker-compose up -d
 

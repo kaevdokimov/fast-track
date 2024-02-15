@@ -3,10 +3,11 @@
 
 ### Используется
 
-- PHP 8.3
-- PostgreSQL
-- Nginx
+- PHP 8.3 (alpine)
+- PostgreSQL (alpine)
+- Nginx (alpine)
 - Docker
+- XDebug
 
 ### Настройка
 
