@@ -24,11 +24,9 @@ RUN apk update && apk add autoconf g++ coreutils make bash libzip-dev zlib-dev l
     && pecl install -o -f xdebug redis \
     && docker-php-ext-enable xdebug \
     && docker-php-ext-enable redis \
-    && docker-php-ext-enable opcache \
     # Other
     && docker-php-ext-install gd \
     && docker-php-ext-install zip \
-    && docker-php-ext-install opcache \
     && rm -rf /tmp/pear  \
     && apk cache clean
 ### PHP extensions ###
@@ -50,7 +48,7 @@ COPY ./docker/common/wait-for-it.sh /usr/local/bin/wait-for-it
 RUN chmod +x /usr/local/bin/wait-for-it
 ### wait-for-it ###
 
-WORKDIR $APP_PROJECT_PATH
+WORKDIR /var/www/fast-track
 
 RUN curl -sS https://get.symfony.com/cli/installer | bash
 RUN mv /root/.symfony5/bin/symfony /usr/local/bin/symfony
