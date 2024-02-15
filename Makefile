@@ -31,7 +31,7 @@ migration:
 	docker-compose exec php symfony console make:migration
 
 migrate:
-	docker-compose exec php symfony console doctrine:migrations:migrate
+	docker-compose exec php symfony console doctrine:migrations:migrate --all-or-nothing --query-time --no-interaction
 
 composer-install:
 	docker-compose exec php composer install
