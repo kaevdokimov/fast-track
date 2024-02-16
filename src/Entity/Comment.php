@@ -39,6 +39,25 @@ class Comment
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $photoFilename = null;
 
+    /**
+     * @param string $author
+     * @param string $text
+     * @param string $email
+     * @param string|null $photoFilename
+     */
+    public function loadData(
+        string $author,
+        string $text,
+        string $email,
+        ?string $photoFilename = null
+    ): void
+    {
+        $this->author = $author;
+        $this->text = $text;
+        $this->email = $email;
+        $this->photoFilename = $photoFilename;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

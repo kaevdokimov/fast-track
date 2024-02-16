@@ -33,8 +33,12 @@ class Conference
     #[ORM\Column(length: 255, unique: true)]
     private string $slug;
 
-    public function __construct()
+    public function __construct(string $city, int $year, bool $isInternational = false)
     {
+        $this->city = $city;
+        $this->year = $year;
+        $this->slug = '-';
+        $this->isInternational = $isInternational;
         $this->comments = new ArrayCollection();
     }
 
@@ -46,10 +50,9 @@ class Conference
     public function computeSlug(SluggerInterface $slugger): void
     {
         if (!$this->slug || '-' === $this->slug) {
-            $this->slug = (string) $slugger->slug(str_replace('', '-', (string) $this))->lower();
+            $this->slug = (string) $slugger->slug(str_replace(' ', '-', (string) $this))->lower();
         }
     }
-
 
     public function getId(): ?int
     {
