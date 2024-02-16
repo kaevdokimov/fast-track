@@ -40,3 +40,6 @@ composer-install:
 composer-update:
 	docker-compose exec php composer update --apcu-autoloader -o
 	docker-compose exec php composer dump-autoload
+
+admin-password:
+	docker-compose exec php symfony console security:hash-password
