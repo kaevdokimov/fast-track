@@ -34,3 +34,8 @@
       VALUES (nextval('admin_id_seq'), 'admin', '[\"ROLE_ADMIN\"]', \
       '\$2y\$13\$7JuJcu4Aywq9pY4aPmr3t.nRA/cSLQSxPoA3YZoIz0GcsMhZkIoqu')"`
     - Обратите внимание на экранирование знака $ в поле password; экранируйте их все!
+
+### Подключение антиспама Akismet
+
+1. Зарегистрируйте бесплатный аккаунт на [akismet.com](https://akismet.com/) и получите ключ Akismet API
+2. Сохраните ключ Akismet API в хранилище конфиденциальных данных Symfony запустив команду `docker-compose exec php symfony console secrets:set AKISMET_KEY`, где AKISMET_KEY - имя ключа, значение ключа запросит команда 
