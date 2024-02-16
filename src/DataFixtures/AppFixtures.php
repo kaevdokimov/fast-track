@@ -2,29 +2,28 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Admin;
 use App\Entity\Comment;
 use App\Entity\Conference;
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\DBAL\Exception;
-use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\PasswordHasher\Hasher\PasswordHasherFactoryInterface;
 
 class AppFixtures extends Fixture
 {
-
-    public function __construct(private readonly EntityManagerInterface $em)
-    {
+    public function __construct(
+        private readonly PasswordHasherFactoryInterface $passwordHasherFactory,
+    ) {
     }
 
-    /**
-     * @throws Exception
-     */
     public function load(ObjectManager $manager): void
     {
         // Add admin user
-        $conn = $this->em->getConnection();
-        $sql = "INSERT INTO admin (id, username, roles, password) VALUES (nextval('admin_id_seq'), 'admin', '[\"ROLE_ADMIN\"]', '\$2y\$13\$7JuJcu4Aywq9pY4aPmr3t.nRA/cSLQSxPoA3YZoIz0GcsMhZkIoqu')";
-        $result = $conn->executeQuery($sql);
+        $admin = new Admin();
+        $admin->setRoles(['ROLE_ADMIN']);
+        $admin->setUsername('admin');
+        $admin->setPassword($this->passwordHasherFactory->getPasswordHasher(Admin::class)->hash('admin'));
+        $manager->persist($admin);
 
         foreach($this->getData() as $conferenceData)
         {
@@ -51,10 +50,9 @@ class AppFixtures extends Fixture
         $manager->flush();
     }
 
-    private function getData():array
+    private function getData():iterable
     {
-        return [
-            [
+        yield [
                 'city' => 'Moscow',
                 'year' => 2024,
                 'isInternational' => true,
@@ -95,8 +93,9 @@ class AppFixtures extends Fixture
                         'anton.chehov@ya.ru'
                     ],
                 ],
-            ],
-            [
+            ];
+
+            yield [
                 'city' => 'Санкт-Петербург',
                 'year' => 2023,
                 'isInternational' => true,
@@ -122,8 +121,9 @@ class AppFixtures extends Fixture
                         'anton.chehov@ya.ru'
                     ],
                 ]
-            ],
-            [
+            ];
+
+            yield [
                 'city' => 'Нижний Новгород',
                 'year' => 2024,
                 'isInternational' => false,
@@ -149,7 +149,6 @@ class AppFixtures extends Fixture
                         'anton.chehov@ya.ru'
                     ],
                 ]
-            ],
-        ];
+            ];
     }
 }
