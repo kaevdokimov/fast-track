@@ -4,7 +4,7 @@
 ## Fast Track Symfony 7
 Based on the book **[Symfony: The Fast Track](https://symfony.com/doc/current/the-fast-track)**
 
-[Russian](https://github.com/kaevdokimov/fast-track/blob/main/README..md)
+[Russian](https://github.com/kaevdokimov/fast-track/blob/main/README.md)
 
 ### Used
 
