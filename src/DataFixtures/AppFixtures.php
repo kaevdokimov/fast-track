@@ -53,7 +53,7 @@ class AppFixtures extends Fixture
     private function getData():iterable
     {
         yield [
-                'city' => 'Moscow',
+                'city' => 'Москва',
                 'year' => 2024,
                 'isInternational' => true,
                 'comments' => [

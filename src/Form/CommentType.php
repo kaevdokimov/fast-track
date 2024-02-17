@@ -21,7 +21,7 @@ class CommentType extends AbstractType
             ])
             ->add('text')
             ->add('email', EmailType::class)
-            ->add('createdAt', )
+            //->add('createdAt', )
             ->add('photo', FileType::class, [
                 'required' => false,
                 'mapped' => false,

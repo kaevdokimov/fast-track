@@ -5,5 +5,5 @@ services:
   database:
     container_name: ft-database
     ports:
-      - "5432"
+      - "5432:5432"
 ###< doctrine/doctrine-bundle ###
