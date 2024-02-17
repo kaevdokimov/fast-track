@@ -48,6 +48,7 @@ jobs:
         postgresql db: app
         postgresql user: app
         postgresql password: app-pwd
+    
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       env:
         DATABASE_URL: postgresql://app:app-pwd@127.0.0.1:5432/app?serverVersion=16&charset=utf8
