@@ -1,6 +1,6 @@
 #!make
 
-init: docker-clear docker-build docker-up composer-install migrate fixtures test-init
+init: docker-clear docker-build docker-up composer-install migrate fixtures messenger-init messenger-run test-init
 up: docker-up
 down: docker-down
 restart: docker-down docker-up
@@ -42,11 +42,17 @@ clear:
 app:
 	docker-compose exec php bash
 
+messenger-init:
+	docker-compose exec php symfony console messenger:setup-transports
+
+messenger-run:
+	docker-compose exec php symfony run -d --watch=config,src,templates,vendor symfony console messenger:consume async -vv
+
 migration:
 	docker-compose exec php symfony console make:migration
 
 migrate:
-	docker-compose exec php symfony console doctrine:migrations:migrate --all-or-nothing --query-time --no-interaction --write-sql --env=dev
+	docker-compose exec php symfony console doctrine:migrations:migrate --all-or-nothing --query-time --no-interaction --env=dev
 
 migrate-prod:
 	docker-compose exec php symfony console doctrine:migrations:migrate --all-or-nothing --query-time --no-interaction
@@ -64,3 +70,8 @@ fixtures:
 show-tables:
 	docker-compose exec php symfony console dbal:run-sql "SELECT * FROM pg_catalog.pg_tables WHERE schemaname NOT IN ('pg_catalog','information_schema');"
 
+log:
+	docker-compose exec php symfony server:log
+
+status:
+	docker-compose exec php symfony server:status
