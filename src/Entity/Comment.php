@@ -40,21 +40,30 @@ class Comment
     private ?string $photoFilename = null;
 
     /**
+     * values: submitted, spam, published
+     */
+    #[ORM\Column(length: 255, nullable: true, options: ['default' => 'submitted'])]
+    private ?string $state = 'submitted';
+
+    /**
      * @param string $author
      * @param string $text
      * @param string $email
+     * @param string $state
      * @param string|null $photoFilename
      */
     public function loadData(
         string $author,
         string $text,
         string $email,
+        string $state = 'submitted',
         ?string $photoFilename = null
     ): void
     {
         $this->author = $author;
         $this->text = $text;
         $this->email = $email;
+        $this->state = $state;
         $this->photoFilename = $photoFilename;
     }
 
@@ -137,6 +146,18 @@ class Comment
     public function setPhotoFilename(?string $photoFilename): static
     {
         $this->photoFilename = $photoFilename;
+
+        return $this;
+    }
+
+    public function getState(): ?string
+    {
+        return $this->state;
+    }
+
+    public function setState(?string $state): static
+    {
+        $this->state = $state;
 
         return $this;
     }

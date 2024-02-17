@@ -38,9 +38,10 @@ class AppFixtures extends Fixture
             {
                 $comment = new Comment();
                 $comment->loadData(
-                    $commentData[0],
-                    $commentData[1],
-                    $commentData[2]
+                    author: $commentData[0],
+                    text: $commentData[1],
+                    email: $commentData[2],
+                    state: $commentData[3]?? 'published'
                 );
                 $comment->setConference($conference);
                 $manager->persist($comment);
@@ -91,6 +92,12 @@ class AppFixtures extends Fixture
                         'Антон Чехов',
                         'Попал в стаю, лай не лай, а хвостом виляй',
                         'anton.chehov@ya.ru'
+                    ],
+                    [
+                        'Вася Пупкин',
+                        'Кажется, этот комментарий будет на модерации',
+                        'vasya.pupkin@ya.ru',
+                        'submitted'
                     ],
                 ],
             ];
