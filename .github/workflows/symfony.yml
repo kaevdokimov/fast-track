@@ -7,7 +7,7 @@ name: Symfony
 
 on:
   push:
-    branches: [ "main", "Symfony-workflow" ]
+    branches: [ "main", "symfony-workflow" ]
   pull_request:
     branches: [ "main" ]
 
