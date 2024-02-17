@@ -1,3 +1,6 @@
+[![Symfony](https://github.com/kaevdokimov/fast-track/actions/workflows/symfony.yml/badge.svg?branch=main)](https://github.com/kaevdokimov/fast-track/actions/workflows/symfony.yml)
+[![NodeJS with Webpack](https://github.com/kaevdokimov/fast-track/actions/workflows/webpack.yml/badge.svg?branch=main)](https://github.com/kaevdokimov/fast-track/actions/workflows/webpack.yml)
+
 ## Гостевая книга на Symfony 7
 По книге **[Symfony: The Fast Track](https://symfony.com/doc/current/the-fast-track)**
 
