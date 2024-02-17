@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests;
+namespace App\Tests\Unit;
 
 use App\Entity\Comment;
 use App\SpamChecker;
@@ -11,6 +11,7 @@ use Symfony\Contracts\HttpClient\ResponseInterface;
 
 class SpamCheckerTest extends TestCase
 {
+    /** @uses workflow */
     public function testSpamScoreWithInvalidRequest(): void
     {
         $comment = new Comment();
@@ -27,6 +28,7 @@ class SpamCheckerTest extends TestCase
 
     /**
      * @dataProvider provideComments
+     * @uses workflow
      */
     public function testSpamScore(int $expectedScore, ResponseInterface $response, Comment $comment, array $context)
     {

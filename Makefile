@@ -18,6 +18,12 @@ docker-clear:
 docker-build:
 	docker-compose build --pull
 
+tests-workflow:
+	./bin/console doctrine:database:create --if-not-exists --env=test
+	./bin/console doctrine:migrations:migrate -n --env=test
+	./bin/console doctrine:fixtures:load --purge-with-truncate -n --env=test
+	./bin/phpunit --uses workflow
+
 tests:
 	docker-compose exec php symfony console doctrine:database:create --if-not-exists --env=test
 	docker-compose exec php symfony console doctrine:migrations:migrate -n --env=test

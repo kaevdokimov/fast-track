@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Tests\Controller;
+namespace App\Tests\Unit\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class ConferenceControllerTest extends WebTestCase
 {
+    /** @uses workflow */
     public function testSomething(): void
     {
         $client = static::createClient();
@@ -15,6 +16,7 @@ class ConferenceControllerTest extends WebTestCase
         $this->assertSelectorTextContains('h2', 'Give your feedback!');
     }
 
+    /** @uses workflow */
     public function testConferencePage()
     {
         $client = static::createClient();
