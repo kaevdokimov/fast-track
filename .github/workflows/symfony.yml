@@ -53,4 +53,4 @@ jobs:
       env:
         DATABASE_URL: postgresql://app:app-pwd@127.0.0.1:5432/app?serverVersion=16&charset=utf8
       run:
-        ./bin/console doctrine:database:create --if-not-exists --env=test && ./bin/console doctrine:migrations:migrate -n --env=test && ./bin/console doctrine:fixtures:load --purge-with-truncate -n --env=test && ./bin/phpunit
+        make tests-workflow
