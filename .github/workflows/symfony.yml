@@ -48,7 +48,7 @@ jobs:
         postgresql db: app
         postgresql user: app
         postgresql password: app-pwd
-    #- name: Execute tests (Unit and Feature tests) via PHPUnit
-    #  env:
-    #    DATABASE_URL: postgresql://app:app-pwd@database/app?serverVersion=16&charset=utf8
-    #  run: vendor/bin/phpunit
+    - name: Make init
+      run: make init
+    - name: Execute tests (Unit and Feature tests) via PHPUnit
+      run: make tests
