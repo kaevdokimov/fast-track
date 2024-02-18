@@ -42,6 +42,7 @@ test-init:
 
 clear:
 	docker-compose exec php symfony console cache:clear
+	#rm -rf var/cache/dev/http_cache/
 
 app:
 	docker-compose exec php bash
