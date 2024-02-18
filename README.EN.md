@@ -45,3 +45,7 @@ Based on the book **[Symfony: The Fast Track](https://symfony.com/doc/current/th
 
 1. Register a free account on [akismet.com](https://akismet.com/) and get an Akismet API key
 2. Save the Akismet API key in the Symfony confidential data store by running the command `docker-compose exec php symfony console secrets:set AKISMET_KEY`, where AKISMET_KEY is the name of the key, the command will ask for the value of the key
+
+### Webmailer
+1. To test sending and receiving mail, the mailer service is used, launched via docker-compose
+2. Default address http://localhost:8025

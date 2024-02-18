@@ -45,3 +45,7 @@
 
 1. Зарегистрируйте бесплатный аккаунт на [akismet.com](https://akismet.com/) и получите ключ Akismet API
 2. Сохраните ключ Akismet API в хранилище конфиденциальных данных Symfony запустив команду `docker-compose exec php symfony console secrets:set AKISMET_KEY`, где AKISMET_KEY - имя ключа, значение ключа запросит команда 
+
+### Webmailer
+1. Для тестирвоания отправки и получения почты, используется сервис mailer, запускается через docker-compose
+2. По-умолчанию адрес http://localhost:8025

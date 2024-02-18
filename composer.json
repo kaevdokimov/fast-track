@@ -19,13 +19,17 @@
         "symfony/framework-bundle": "7.0.*",
         "symfony/http-client": "7.0.*",
         "symfony/http-foundation": "7.0.*",
+        "symfony/mailer": "7.0.*",
         "symfony/mime": "7.0.*",
         "symfony/monolog-bundle": "^3.10",
+        "symfony/notifier": "7.0.*",
         "symfony/runtime": "7.0.*",
         "symfony/webpack-encore-bundle": "^2.1",
         "symfony/workflow": "7.0.*",
         "symfony/yaml": "7.0.*",
+        "twig/cssinliner-extra": "^3",
         "twig/extra-bundle": "^3.8",
+        "twig/inky-extra": "^3",
         "twig/intl-extra": "^3.8"
     },
     "require-dev": {

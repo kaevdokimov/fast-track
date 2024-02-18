@@ -28,7 +28,11 @@ tests:
 	docker-compose exec php symfony console doctrine:database:create --if-not-exists --env=test
 	docker-compose exec php symfony console doctrine:migrations:migrate -n --env=test
 	docker-compose exec php symfony console doctrine:fixtures:load --purge-with-truncate -n --env=test
+	docker-compose exec php symfony server:stop
+	docker-compose exec php symfony console messenger:setup-transports -n --env=test
+	docker-compose exec php symfony run -d symfony console messenger:consume async -q -n --env=test
 	docker-compose exec php symfony php bin/phpunit $(MAKECMDGOALS)
+	docker-compose exec php symfony server:stop
 .PHONY: tests
 
 test-init:
@@ -73,5 +77,8 @@ show-tables:
 log:
 	docker-compose exec php symfony server:log
 
+stop:
+	docker-compose exec php symfony server:stop
 status:
 	docker-compose exec php symfony server:status
+
