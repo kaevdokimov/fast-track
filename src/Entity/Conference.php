@@ -50,7 +50,7 @@ class Conference
     public function computeSlug(SluggerInterface $slugger): void
     {
         if (!$this->slug || '-' === $this->slug) {
-            $this->slug = (string) $slugger->slug(str_replace(' ', '-', (string) $this))->lower();
+            $this->slug = (string)$slugger->slug(str_replace(' ', '-', (string)$this))->lower();
         }
     }
 

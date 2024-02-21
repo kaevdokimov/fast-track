@@ -2,6 +2,7 @@
 [![NodeJS with Webpack](https://github.com/kaevdokimov/fast-track/actions/workflows/webpack.yml/badge.svg?branch=main)](https://github.com/kaevdokimov/fast-track/actions/workflows/webpack.yml)
 
 ## Fast Track Symfony 7
+
 По книге **[Symfony: The Fast Track](https://symfony.com/doc/current/the-fast-track)**
 
 [English](https://github.com/kaevdokimov/fast-track/blob/main/README.EN.md)
@@ -30,11 +31,11 @@
 - `make restart` - перезапустить проект
 - `make clear` - очистить кеш
 
-
 ### Создание Администратора
 
 1. Для генерации пароля запустите `make admin-password` и введите желаемый пароль
-2. Утиллита Symfony Password Hash сгенерирует password hash вида `$2y$13$7JuJcu4Aywq9pY4aPmr3t.nRA/cSLQSxPoA3YZoIz0GcsMhZkIoqu`
+2. Утиллита Symfony Password Hash сгенерирует password hash
+   вида `$2y$13$7JuJcu4Aywq9pY4aPmr3t.nRA/cSLQSxPoA3YZoIz0GcsMhZkIoqu`
 3. Для добавляения администратора, используйте следующий SQL-запрос (заменив на свой сгенерированный password hash):
     - `docker-compose exec php symfony console dbal:run-sql "INSERT INTO admin (id, username, roles, password) \
       VALUES (nextval('admin_id_seq'), 'admin', '[\"ROLE_ADMIN\"]', \
@@ -44,8 +45,11 @@
 ### Подключение антиспама Akismet
 
 1. Зарегистрируйте бесплатный аккаунт на [akismet.com](https://akismet.com/) и получите ключ Akismet API
-2. Сохраните ключ Akismet API в хранилище конфиденциальных данных Symfony запустив команду `docker-compose exec php symfony console secrets:set AKISMET_KEY`, где AKISMET_KEY - имя ключа, значение ключа запросит команда 
+2. Сохраните ключ Akismet API в хранилище конфиденциальных данных Symfony запустив
+   команду `docker-compose exec php symfony console secrets:set AKISMET_KEY`, где AKISMET_KEY - имя ключа, значение
+   ключа запросит команда
 
 ### Webmailer
+
 1. Для тестирвоания отправки и получения почты, используется сервис mailer, запускается через docker-compose
 2. По-умолчанию адрес http://localhost:8025

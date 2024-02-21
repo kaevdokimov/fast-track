@@ -1,4 +1,5 @@
 <?php
+
 namespace App\MessageHandler;
 
 use App\ImageOptimizer;
@@ -23,17 +24,18 @@ use Symfony\Component\Mailer\Exception\TransportExceptionInterface as MailerTran
 readonly class CommentMessageHandler
 {
     public function __construct(
-        private EntityManagerInterface  $entityManager,
-        private SpamChecker             $spamChecker,
-        private CommentRepository       $commentRepository,
-        private MessageBusInterface     $bus,
-        private WorkflowInterface       $commentStateMachine,
-        private MailerInterface         $mailer,
+        private EntityManagerInterface              $entityManager,
+        private SpamChecker                         $spamChecker,
+        private CommentRepository                   $commentRepository,
+        private MessageBusInterface                 $bus,
+        private WorkflowInterface                   $commentStateMachine,
+        private MailerInterface                     $mailer,
         #[Autowire('%admin_email%')] private string $adminEmail,
-        private ImageOptimizer          $imageOptimizer,
-        #[Autowire('%photo_dir%')] private string $photoDir,
-        private ?LoggerInterface        $logger = null,
-    ) {
+        private ImageOptimizer                      $imageOptimizer,
+        #[Autowire('%photo_dir%')] private string   $photoDir,
+        private ?LoggerInterface                    $logger = null,
+    )
+    {
     }
 
     /**
@@ -62,8 +64,8 @@ readonly class CommentMessageHandler
             $this->entityManager->flush();
             $this->bus->dispatch($message);
         } elseif (
-                $this->commentStateMachine->can($comment, 'publish') ||
-                $this->commentStateMachine->can($comment, 'publish_ham'
+            $this->commentStateMachine->can($comment, 'publish') ||
+            $this->commentStateMachine->can($comment, 'publish_ham'
             )) {
             $this->mailer->send((new NotificationEmail())
                 ->subject('New comment posted')
@@ -74,7 +76,7 @@ readonly class CommentMessageHandler
             );
         } elseif ($this->commentStateMachine->can($comment, 'optimize')) {
             if ($comment->getPhotoFilename()) {
-                $this->imageOptimizer->resize($this->photoDir.'/'.$comment->getPhotoFilename());
+                $this->imageOptimizer->resize($this->photoDir . '/' . $comment->getPhotoFilename());
             }
             $this->commentStateMachine->apply($comment, 'optimize');
             $this->entityManager->flush();

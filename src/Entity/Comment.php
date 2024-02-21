@@ -53,10 +53,10 @@ class Comment
      * @param string|null $photoFilename
      */
     public function loadData(
-        string $author,
-        string $text,
-        string $email,
-        string $state = 'submitted',
+        string  $author,
+        string  $text,
+        string  $email,
+        string  $state = 'submitted',
         ?string $photoFilename = null
     ): void
     {

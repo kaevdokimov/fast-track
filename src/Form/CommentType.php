@@ -29,8 +29,7 @@ class CommentType extends AbstractType
                     new Image(['maxSize' => '1024K'])
                 ]
             ])
-            ->add('submit', SubmitType::class)
-        ;
+            ->add('submit', SubmitType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

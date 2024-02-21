@@ -16,8 +16,9 @@ class StepInfoCommand extends Command
      * @param CacheInterface $cache
      */
     public function __construct(
-         private readonly CacheInterface $cache,
-    ) {
+        private readonly CacheInterface $cache,
+    )
+    {
         parent::__construct();
     }
 

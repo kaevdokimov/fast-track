@@ -25,8 +25,9 @@ class ConferenceController extends AbstractController
 {
     public function __construct(
         private readonly EntityManagerInterface $entityManager,
-        private MessageBusInterface $bus
-    ) {
+        private MessageBusInterface             $bus
+    )
+    {
     }
 
     #[Route('/', name: 'homepage')]
@@ -40,7 +41,7 @@ class ConferenceController extends AbstractController
     #[Route('/conference_header', name: 'conference_header')]
     public function conferenceHeader(ConferenceRepository $conferenceRepository): Response
     {
-        return $this->render('conference/header.html.twig',['conferences' => $conferenceRepository->findAll()])
+        return $this->render('conference/header.html.twig', ['conferences' => $conferenceRepository->findAll()])
             ->setSharedMaxAge(3600);
     }
 
@@ -53,18 +54,19 @@ class ConferenceController extends AbstractController
      */
     #[Route('/conference/{slug}', name: 'conference')]
     public function show(
-        Request $request,
-        Conference $conference,
-        CommentRepository $commentRepository,
+        Request                           $request,
+        Conference                        $conference,
+        CommentRepository                 $commentRepository,
         #[Autowire('%photo_dir%')] string $photoDir,
-    ): Response {
+    ): Response
+    {
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $comment->setConference($conference);
             if ($photo = $form['photo']->getData()) {
-                $filename = bin2hex(random_bytes(6)).'.'.$photo->guessExtension();
+                $filename = bin2hex(random_bytes(6)) . '.' . $photo->guessExtension();
                 $photo->move($photoDir, $filename);
                 $comment->setPhotoFilename($filename);
             }

@@ -1,5 +1,5 @@
 framework:
-    mailer:
-        dsn: '%env(MAILER_DSN)%'
-        envelope:
-            sender: "%admin_email%"
+  mailer:
+    dsn: '%env(MAILER_DSN)%'
+    envelope:
+      sender: "%admin_email%"

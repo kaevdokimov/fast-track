@@ -40,7 +40,7 @@ class ConferenceControllerTest extends WebTestCase
             'comment[author]' => 'Козьма Прутков',
             'comment[text]' => 'Что скажут о тебе другие, коли ты сам о себе ничего сказать не можешь?',
             'comment[email]' => $email = 'kozma.prutkov@ya.ru',
-            'comment[photo]' => dirname(__DIR__, 2).'/public/images/under-construction.gif',
+            'comment[photo]' => dirname(__DIR__, 2) . '/public/images/under-construction.gif',
         ]);
         $this->assertResponseRedirects();
 

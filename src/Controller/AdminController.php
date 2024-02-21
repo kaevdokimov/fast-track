@@ -22,7 +22,8 @@ class AdminController extends AbstractController
         private readonly Environment            $twig,
         private readonly EntityManagerInterface $entityManager,
         private readonly MessageBusInterface    $bus,
-    ) {
+    )
+    {
     }
 
     #[Route('/http-cache/{uri<.*>}', methods: ['PURGE'])]
@@ -32,7 +33,7 @@ class AdminController extends AbstractController
             return new Response('KO', 400);
         }
 
-        $store->purge($request->getSchemeAndHttpHost().'/'.$uri);
+        $store->purge($request->getSchemeAndHttpHost() . '/' . $uri);
 
         return new Response('Done');
     }

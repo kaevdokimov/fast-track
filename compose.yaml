@@ -23,7 +23,7 @@ services:
       - ./:${APP_PROJECT_PATH}
     depends_on:
       - database
-###> doctrine/doctrine-bundle ###
+  ###> doctrine/doctrine-bundle ###
   database:
     image: postgres:${POSTGRES_VERSION:-16}-alpine3.18
     environment:
@@ -38,6 +38,6 @@ services:
 ###< doctrine/doctrine-bundle ###
 
 volumes:
-###> doctrine/doctrine-bundle ###
+  ###> doctrine/doctrine-bundle ###
   database_data:
 ###< doctrine/doctrine-bundle ###

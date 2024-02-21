@@ -1,4 +1,5 @@
 <?php
+
 namespace App\EntityListener;
 
 use App\Entity\Conference;
@@ -13,7 +14,8 @@ readonly class ConferenceEntityListener
 {
     public function __construct(
         private SluggerInterface $slugger,
-    ) {
+    )
+    {
     }
 
     public function prePersist(Conference $conference, LifecycleEventArgs $event): void
