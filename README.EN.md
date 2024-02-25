@@ -45,11 +45,18 @@ Based on the book **[Symfony: The Fast Track](https://symfony.com/doc/current/th
 ### Connecting Akismet antispam
 
 1. Register a free account on [akismet.com](https://akismet.com/) and get an Akismet API key
-2. Save the Akismet API key in the Symfony confidential data store by running the
-   command `docker-compose exec php symfony console secrets:set AKISMET_KEY`, where AKISMET_KEY is the name of the key,
+2. Save the Akismet API key in the Symfony confidential data store by running the command `docker-compose exec php symfony console secrets:set AKISMET_KEY`, where AKISMET_KEY is the name of the key,
    the command will ask for the value of the key
 
 ### Webmailer
 
 1. To test sending and receiving mail, the mailer service is used, launched via docker-compose
 2. Default address http://localhost:8025
+
+### Setting up notifications in Telegram
+
+1. Register a new bot via https://t.me/BotFather, get a Telegram TOKEN
+2. Add the bot to the group/chat
+3. Get the CHAT_ID using the query `https://api.telegram.org/bot<TOKEN>/getUpdates`
+4. Configure `TELEGRAM_DSN=telegram://TOKEN@default?channel=CHAT_ID`
+5. Save the TELEGRAM_DSN key to the Symfony confidential data store by running the command `docker-compose exec php symfony console secrets:set TELEGRAM_DSN`

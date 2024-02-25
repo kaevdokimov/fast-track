@@ -80,6 +80,7 @@ log:
 
 stop:
 	docker-compose exec php symfony server:stop
+
 status:
 	docker-compose exec php symfony server:status
 

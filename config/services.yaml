@@ -7,6 +7,7 @@ parameters:
   photo_dir: "%kernel.project_dir%/public/uploads/photos"
   default_admin_email: admin@example.com
   admin_email: "%env(string:default:default_admin_email:ADMIN_EMAIL)%"
+  tg_chat_id: "%env(TELEGRAM_CHAT_ID)%"
   default_base_url: 'http://127.0.0.1'
   router.request_context.base_url: '%env(default:default_base_url:SYMFONY_DEFAULT_ROUTE_URL)%'
 
