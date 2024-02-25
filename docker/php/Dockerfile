@@ -1,11 +1,9 @@
 FROM php:8.3-fpm
-RUN apt update && apt install -y zlib1g-dev g++ git libxslt-dev libicu-dev zip libzip-dev libpq-dev zip graphviz \
+RUN apt update && apt install -y zlib1g-dev g++ git libpng-dev libxslt-dev libicu-dev zip libzip-dev libpq-dev zip graphviz \
     && pecl install -o -f xdebug redis \
     && docker-php-ext-enable xdebug redis \
     && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
-    && docker-php-ext-install intl xsl opcache pdo_pgsql pgsql zip \
-    && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
-    && docker-php-ext-install gd \
+    && docker-php-ext-install gd intl xsl opcache pdo_pgsql pgsql zip \
     && pecl clear-cache \
     && apt autoremove -y g++ \
     && rm -rf /tmp/pear /var/cache/*
