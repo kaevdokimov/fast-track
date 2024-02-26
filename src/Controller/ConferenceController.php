@@ -24,11 +24,12 @@ use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
+
 class ConferenceController extends AbstractController
 {
     public function __construct(
         private readonly EntityManagerInterface $entityManager,
-        private MessageBusInterface             $bus
+        private readonly MessageBusInterface $bus
     )
     {
     }
