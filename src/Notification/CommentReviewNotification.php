@@ -3,9 +3,6 @@
 namespace App\Notification;
 
 use App\Entity\Comment;
-use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
-use Symfony\Component\DependencyInjection\Attribute\Autowire;
-use Symfony\Component\Notifier\Bridge\Telegram\Reply\Markup\Button\InlineKeyboardButton;
 use Symfony\Component\Notifier\Bridge\Telegram\Reply\Markup\InlineKeyboardMarkup;
 use Symfony\Component\Notifier\Bridge\Telegram\TelegramOptions;
 use Symfony\Component\Notifier\Message\ChatMessage;
@@ -24,7 +21,7 @@ class CommentReviewNotification extends Notification implements EmailNotificatio
     )
     {
         $message = sprintf('%s (%s) says: %s', $this->comment->getAuthor(), $this->comment->getEmail(), $this->comment->getText());
-        parent::__construct("New comment posted\n". $message);
+        parent::__construct("New comment posted\n" . $message);
     }
 
     public function asEmailMessage(EmailRecipientInterface $recipient, ?string $transport = null): ?EmailMessage
@@ -32,8 +29,7 @@ class CommentReviewNotification extends Notification implements EmailNotificatio
         $message = EmailMessage::fromNotification($this, $recipient, $transport);
         $message->getMessage()
             ->htmlTemplate('emails/comment_notification.html.twig')
-            ->context(['comment' => $this->comment])
-        ;
+            ->context(['comment' => $this->comment]);
 
         return $message;
     }

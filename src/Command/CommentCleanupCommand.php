@@ -15,15 +15,15 @@ class CommentCleanupCommand extends Command
 {
     public function __construct(
         private readonly CommentRepository $commentRepository,
-    ) {
+    )
+    {
         parent::__construct();
     }
 
     protected function configure(): void
     {
         $this
-            ->addOption('dry-run', null, InputOption::VALUE_NONE, 'Dry run')
-        ;
+            ->addOption('dry-run', null, InputOption::VALUE_NONE, 'Dry run');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int

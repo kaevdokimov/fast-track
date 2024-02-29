@@ -18,21 +18,20 @@ use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
-use Symfony\Component\Mailer\Exception\TransportExceptionInterface as MailerTransportExceptionInterface;
 
 #[AsMessageHandler]
 readonly class CommentMessageHandler
 {
     public function __construct(
-        private EntityManagerInterface              $entityManager,
-        private SpamChecker                         $spamChecker,
-        private CommentRepository                   $commentRepository,
-        private MessageBusInterface                 $bus,
-        private WorkflowInterface                   $commentStateMachine,
-        private NotifierInterface                   $notifier,
-        private ImageOptimizer                      $imageOptimizer,
-        #[Autowire('%photo_dir%')] private string   $photoDir,
-        private ?LoggerInterface                    $logger = null,
+        private EntityManagerInterface            $entityManager,
+        private SpamChecker                       $spamChecker,
+        private CommentRepository                 $commentRepository,
+        private MessageBusInterface               $bus,
+        private WorkflowInterface                 $commentStateMachine,
+        private NotifierInterface                 $notifier,
+        private ImageOptimizer                    $imageOptimizer,
+        #[Autowire('%photo_dir%')] private string $photoDir,
+        private ?LoggerInterface                  $logger = null,
     )
     {
     }

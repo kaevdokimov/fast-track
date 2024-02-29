@@ -39,27 +39,25 @@ class CommentRepository extends ServiceEntityRepository
     /**
      * @throws Exception
      */
-    public function deleteOldRejected(): int
-    {
-        return $this->getOldRejectedQueryBuilder()->delete()->getQuery()->execute();
-    }
-
-    /**
-     * @throws Exception
-     */
     private function getOldRejectedQueryBuilder(): QueryBuilder
     {
         return $this->createQueryBuilder('c')
             ->andWhere('c.state = :state_rejected or c.state = :state_spam')
             ->andWhere('c.createdAt < :date')
             ->setParameters(new ArrayCollection([
-                new Parameter('state_rejected','rejected'),
-                new Parameter('state_spam','spam'),
-                new Parameter('date',new DateTimeImmutable(-self::DAYS_BEFORE_REJECTED_REMOVAL.' days')),
-            ]))
-        ;
+                new Parameter('state_rejected', 'rejected'),
+                new Parameter('state_spam', 'spam'),
+                new Parameter('date', new DateTimeImmutable(-self::DAYS_BEFORE_REJECTED_REMOVAL . ' days')),
+            ]));
     }
 
+    /**
+     * @throws Exception
+     */
+    public function deleteOldRejected(): int
+    {
+        return $this->getOldRejectedQueryBuilder()->delete()->getQuery()->execute();
+    }
 
     public function getCommentPaginator(Conference $conference, int $offset): Paginator
     {
